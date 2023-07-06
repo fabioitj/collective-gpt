@@ -26,7 +26,7 @@ function Card({ title, subtitle, price, tip, link }: { title: string, subtitle: 
         <span className="font-bold text-2xl text-green-400">{'->'} {price}</span>
         <span className="font-bold">{tip}</span>
       </div>
-      <a href={link} className="flex items-center shadow-xl p-2 justify-between px-4 bg-green-600 rounded-lg">Faça seu pedido <WhatsappIcon /></a>
+      <a href={link} className="flex font-bold items-center shadow-xl p-2 justify-between px-4 bg-green-600 rounded-lg">Faça seu pedido <WhatsappIcon /></a>
     </div>
   )
 }
@@ -39,18 +39,12 @@ export default function Home() {
   };
 
   return (
-    <main className="w-full h-screen justify-center bg-slate-700 pt-10">
-      <Image
-        src={Background}
-        alt="Background"
-        className="object-cover absolute z-10"
-        fill
-      />
-      <div className="absolute z-20 w-full flex flex-col gap-10 lg:justify-center">
+    <main className="w-full min-h-screen justify-center bg-slate-700 py-10 bg-center bg-cover bg-fixed" style={{backgroundImage: "url('https://wp-assets.futurism.com/2023/04/openai-working-humanoid-robot.jpg')"}}>
+      <div className="w-full h-full flex flex-col gap-10 lg:justify-center">
         <h2 className="text-center text-6xl font-bold">Collective GPT-4</h2>
         <div className="flex flex-col items-center gap-8 justify-between px-8 lg:flex-row lg:px-40">
-          <Card key={0} title="Coletivo 3" subtitle="3 pessoas por conta" price="R$60,00" tip="--" link={links.collective3}/>
-          <Card key={1} title="Coletivo 2" subtitle="2 pessoas por conta" price="R$70,00" tip="Mais privativo!" link={links.collective2}/>
+          <Card key={0} title="Coletivo 3" subtitle="3 pessoas por conta" price="R$59,90" tip="--" link={links.collective3}/>
+          <Card key={1} title="Coletivo 2" subtitle="2 pessoas por conta" price="R$69,90" tip="Mais privativo!" link={links.collective2}/>
         </div>
       </div>
 
