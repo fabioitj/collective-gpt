@@ -1,3 +1,7 @@
+"use client"
+import {motion} from "framer-motion"
+import { useEffect, useState } from "react"
+
 function WhatsappIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0,0,256,256" width="32px" height="32px" fill-rule="nonzero">
@@ -13,7 +17,7 @@ function WhatsappIcon() {
 
 function Card({ title, subtitle, price, tip, link }: { title: string, subtitle: string, price: string, tip: string, link: string }) {
   return (
-    <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg drop-shadow-lg p-8 flex flex-col gap-8 w-full">
+    <motion.div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg drop-shadow-lg p-8 flex flex-col gap-8 w-full" initial={{ opacity: 0, x: -200}} whileInView={{ opacity: 1, x: 0}} transition={{ ease: 'linear' }}>
       <div className="flex flex-col">
         <h3 className="font-bold text-4xl">{title}</h3>
         <span className="font-thin text-sm">{subtitle}</span>
@@ -24,11 +28,23 @@ function Card({ title, subtitle, price, tip, link }: { title: string, subtitle: 
         <span className="font-bold">{tip}</span>
       </div>
       <a href={link} className="flex font-bold items-center shadow-xl p-2 justify-between px-4 bg-green-600 rounded-lg">Faça seu pedido <WhatsappIcon /></a>
-    </div>
+    </motion.div>
   )
 }
 
 export default function Home() {
+
+  const [showMore, setShowMore] = useState(true);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const height = window.pageYOffset;
+      if(height > 99)
+        setShowMore(false);
+      else
+        setShowMore(true);
+    });
+  })
 
   const links = {
     'collective3': 'https://api.whatsapp.com/send?phone=5547992611819&text=Ol%C3%A1,%20quero%20contratar%20o%20servi%C3%A7o%20do%20Collective%20GPT,%20escolhi%20o%20plano%20Collective%203',
@@ -36,15 +52,13 @@ export default function Home() {
   };
 
   return (
-    <main className="w-full min-h-screen justify-center bg-slate-700 py-10 bg-center bg-cover bg-fixed" style={{backgroundImage: "url('https://wp-assets.futurism.com/2023/04/openai-working-humanoid-robot.jpg')"}}>
-      <div className="w-full h-full flex flex-col gap-10 lg:justify-center">
-        <h2 className="text-center text-6xl font-bold">Collective GPT-4</h2>
-        <div className="flex flex-col items-center gap-8 justify-between px-8 lg:flex-row lg:px-40">
-          <Card key={0} title="Coletivo 3" subtitle="3 pessoas por conta" price="R$59,90" tip="--" link={links.collective3}/>
-          <Card key={1} title="Coletivo 2" subtitle="2 pessoas por conta" price="R$69,90" tip="Mais privativo!" link={links.collective2}/>
-        </div>
+    <main className="w-full min-h-screen justify-center bg-slate-700 bg-center bg-cover bg-fixed" style={{backgroundImage: "url('https://wp-assets.futurism.com/2023/04/openai-working-humanoid-robot.jpg')"}}>
+      <motion.h2 className="text-center text-6xl font-bold h-screen flex items-center justify-start lg:pl-40" initial={{ opacity: 0, x: -200}} whileInView={{ opacity: 1, x: 0}} transition={{ ease: 'linear' }}>Collective GPT-4 👽</motion.h2>
+      <div id="cards" className="h-screen flex flex-col items-center gap-8 justify-center px-8 lg:flex-row lg:px-40">
+        <Card key={0} title="Coletivo 3" subtitle="3 pessoas por conta" price="R$59,90" tip="--" link={links.collective3}/>
+        <Card key={1} title="Coletivo 2" subtitle="2 pessoas por conta" price="R$69,90" tip="Mais privativo!" link={links.collective2}/>
       </div>
-
+        <motion.a href="#cards" className="text-xl absolute bottom-16 left-1/2 -translate-x-1/2 flex font-bold items-center shadow-xl p-2 justify-between px-4 bg-green-600 rounded-lg cursor-pointer hover:text-green-600 hover:bg-white transition-colors" initial={{ x: -50, y: 50, opacity: 0}} whileInView={{ x:-50,  y: 0, opacity: 1}} transition={{ ease: 'linear' }}>Ver mais</motion.a>
     </main>
   )
 }
