@@ -19,15 +19,15 @@ function Card({ title, subtitle, price, tip, link }: { title: string, subtitle: 
   return (
     <motion.div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg drop-shadow-lg p-8 flex flex-col gap-8 w-full" initial={{ opacity: 0, x: -200}} whileInView={{ opacity: 1, x: 0}} transition={{ ease: 'linear' }}>
       <div className="flex flex-col">
-        <h3 className="font-bold text-4xl">{title}</h3>
-        <span className="font-thin text-sm">{subtitle}</span>
+        <h3 className="font-bold text-4xl text-white">{title}</h3>
+        <span className="text-sm text-white">{subtitle}</span>
       </div>
       <div className="flex flex-col">
         <span className="line-through text-red-600 font-bold">R$120,00</span>
         <span className="font-bold text-2xl text-green-400">{'->'} {price}</span>
-        <span className="font-bold">{tip}</span>
+        <span className="text-white">{tip}</span>
       </div>
-      <a href={link} className="flex font-bold items-center shadow-xl p-2 justify-between px-4 bg-green-600 rounded-lg">Faça seu pedido <WhatsappIcon /></a>
+      <a href={link} className="text-white flex font-bold items-center shadow-xl p-2 justify-between px-4 bg-green-600 rounded-lg">Faça seu pedido <WhatsappIcon /></a>
     </motion.div>
   )
 }
@@ -53,12 +53,12 @@ export default function Home() {
 
   return (
     <main className="w-full min-h-screen justify-center bg-slate-700 bg-center bg-cover bg-fixed" style={{backgroundImage: "url('https://wp-assets.futurism.com/2023/04/openai-working-humanoid-robot.jpg')"}}>
-      <motion.h2 className="text-center text-6xl font-bold h-screen flex items-center justify-start lg:pl-40" initial={{ opacity: 0, x: -200}} whileInView={{ opacity: 1, x: 0}} transition={{ ease: 'linear' }}>Collective GPT-4 👽</motion.h2>
+      <motion.h2 className="text-white text-center text-6xl font-bold h-screen flex items-center justify-start lg:pl-40" initial={{ opacity: 0, x: -200}} whileInView={{ opacity: 1, x: 0}} transition={{ ease: 'linear' }}>Collective GPT-4 👽</motion.h2>
       <div id="cards" className="h-screen flex flex-col items-center gap-8 justify-center px-8 lg:flex-row lg:px-40">
-        <Card key={0} title="Coletivo 3" subtitle="3 pessoas por conta" price="R$59,90" tip="--" link={links.collective3}/>
-        <Card key={1} title="Coletivo 2" subtitle="2 pessoas por conta" price="R$69,90" tip="Mais privativo!" link={links.collective2}/>
+        <Card key={0} title="Coletivo 3" subtitle="3 pessoas por conta" price="R$59,90" tip="Você poderá utilizar livremente uma conta 24/7, essa conta será compartilhada com você e outras duas pessoas" link={links.collective3}/>
+        <Card key={1} title="Coletivo 2" subtitle="2 pessoas por conta" price="R$69,90" tip="Você poderá utilizar livremente uma conta 24/7, essa conta será compartilhada com você e outra pessoa" link={links.collective2}/>
       </div>
-        <motion.a href="#cards" className="text-xl absolute bottom-16 left-1/2 -translate-x-1/2 flex font-bold items-center shadow-xl p-2 justify-between px-4 bg-green-600 rounded-lg cursor-pointer hover:text-green-600 hover:bg-white transition-colors" initial={{ x: -50, y: 50, opacity: 0}} whileInView={{ x:-50,  y: 0, opacity: 1}} transition={{ ease: 'linear' }}>Ver mais</motion.a>
+        <motion.a href="#cards" className="text-white text-xl absolute bottom-16 left-1/2 -translate-x-1/2 flex font-bold items-center shadow-xl p-2 justify-between px-4 bg-green-600 rounded-lg cursor-pointer hover:text-green-600 hover:bg-white transition-colors" initial={{ x: -50, y: 50, opacity: 0}} whileInView={{ x:-50,  y: 0, opacity: 1}} transition={{ ease: 'linear' }}>Ver mais</motion.a>
     </main>
   )
 }
